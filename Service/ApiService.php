@@ -33,26 +33,26 @@ class ApiService
 
     /**
      * @param string $value
-     * @param string $client_name
+     * @param string $clientName
      * @param string $context
      *
      * @return Response
      *
      * @throws MediaStorageClientApiException
      */
-    public function send($value, $client_name, $context)
+    public function send($value, $clientName, $context)
     {
         try {
             $request = new FormRequest();
             $request->setHeaders(['headers' => 'enctype:multipart/form-data']);
-            $request->setMethod($this->getClientsConfig($client_name, 'method') ? $this->getClientsConfig($client_name, 'method') : FormRequest::METHOD_POST);
-            $request->setHost($this->getClientsConfig($client_name, 'base_url'));
+            $request->setMethod($this->getClientsConfig($clientName, 'method') ? $this->getClientsConfig($clientName, 'method') : FormRequest::METHOD_POST);
+            $request->setHost($this->getClientsConfig($clientName, 'base_url'));
             $request->addFields([
                 'binaryContent' => $value,
                 'context' => $context,
             ]);
-            $request->setResource($this->getClientsConfig($client_name, 'add_media_url'));
-            $this->logger->debug('Send '.$this->getClientsConfig($client_name, 'base_url').$this->getClientsConfig($client_name, 'add_media_url'));
+            $request->setResource($this->getClientsConfig($clientName, 'add_media_url'));
+            $this->logger->debug('Send '.$this->getClientsConfig($clientName, 'base_url').$this->getClientsConfig($clientName, 'add_media_url'));
             /** @var Response $response */
             $response = $this->client->send($request, null);
             $this->logger->debug('Response: '.$response->getStatusCode().' '.substr($response->getContent(), 0, 300));
