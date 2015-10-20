@@ -1,0 +1,53 @@
+parameters:
+    ignored_domains: []
+    avtonom.media_storage_client: []
+
+services:
+    avtonom.media_storage_client.listener:
+        class: Avtonom\MediaStorageClientBundle\EventListener\ObjectAddFileListener
+        arguments:
+            - @avtonom.media_storage_client.api.factory
+            - %avtonom.media_storage_client%
+            - @avtonom.media_storage_client.logger
+            - @avtonom.media_storage_client.proxy_media.manager
+            - @avtonom.media_storage_client.manager
+        tags:
+            - { name: doctrine.event_listener, event: prePersist, method: run }
+            - { name: doctrine.event_listener, event: preUpdate, method: run }
+
+    avtonom.media_storage_client.manager:
+        class: Avtonom\MediaStorageClientBundle\Service\MediaStorageClientManager
+        arguments:
+            - @avtonom.media_storage_client.api.factory
+            - @avtonom.media_storage_client.proxy_media.manager
+            - @avtonom.media_storage_client.logger
+
+    avtonom.media_storage_client.api.factory:
+        class: Avtonom\MediaStorageClientBundle\Service\ApiService
+        arguments:
+            - @buzz
+            - @avtonom.media_storage_client.logger
+            - %avtonom.media_storage_client%
+
+    avtonom.media_storage_client.logger:
+        class:     Symfony\Bridge\Monolog\Logger
+        arguments: [media_storage_client]
+        calls:
+            - [pushHandler, [@avtonom.media_storage_client.logger_handler]]
+
+    avtonom.media_storage_client.logger_handler:
+        class:     Avtonom\MediaStorageClientBundle\Handler\MonologStreamHandler
+        arguments: [%kernel.logs_dir%/%kernel.environment%.media_storage_client.log, %avtonom.media_storage_client%]
+
+    avtonom.media_storage_client.proxy_media.manager:
+        class: Avtonom\MediaStorageClientBundle\Entity\ProxyMediaManager
+        arguments:
+            - @avtonom.media_storage_client.api.factory
+
+    avtonom.media_storage_client.twig.media.name.extension:
+        class: Avtonom\MediaStorageClientBundle\Twig\MediaNameExtension
+        public: false
+        arguments:
+            - @avtonom.media_storage_client.proxy_media.manager
+        tags:
+            - { name: twig.extension }
