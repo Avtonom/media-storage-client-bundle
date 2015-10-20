@@ -18,7 +18,7 @@
     "sensio/buzz-bundle":"~1.0"
   },
   "autoload": {
-    "psr-0": { "Avtonom\\SemaphoreBundle": "" }
+    "psr-0": { "Avtonom\\MediaStorageClientBundle": "" }
   },
   "target-dir": "Avtonom/MediaStorageClientBundle",
   "minimum-stability": "dev",
