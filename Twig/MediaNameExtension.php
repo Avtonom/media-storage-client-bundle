@@ -19,7 +19,7 @@ class MediaNameExtension extends \Twig_Extension
     {
         return array
         (
-            new \Twig_SimpleFilter('media_name', [$this, 'getMediaName'])
+            new \Twig_SimpleFunction('media_name', [$this, 'getMediaName'])
         );
     }
 
