@@ -38,6 +38,9 @@ class MediaNameExtension extends \Twig_Extension
      */
     public function getMediaName($mediaReferenceFull)
     {
+        if(empty($mediaReferenceFull)){
+            return '';
+        }
         $media = $this->getMedia($mediaReferenceFull);
         return ($media instanceof ProxyMediaInterface) ? $media->getName() : '';
     }
