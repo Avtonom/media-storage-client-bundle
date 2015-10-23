@@ -130,16 +130,18 @@ Processing in the controller:
 
 ``` php
 
-controller:
+public function updateAction(Request $request)
+{
     /** @var UploadedFile $file */
     $file = $request->files->get('file');
     if($file instanceof UploadedFile){
-
+    
         $proxyMedia = $this->get('avtonom.media_storage_client.manager')->sendFile($file, $clientName, $context);
     
         return new JsonResponse([
             'media' => $proxyMedia->toArray(),
         ]);
     }
+}
     
 ```
