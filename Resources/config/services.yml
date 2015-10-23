@@ -51,3 +51,9 @@ services:
             - @avtonom.media_storage_client.proxy_media.manager
         tags:
             - { name: twig.extension }
+
+    avtonom.media_storage_client.twig.media.instanceof.extension:
+        class: Avtonom\MediaStorageClientBundle\Twig\InstanceOfExtension
+        public: false
+        tags:
+            - { name: twig.extension }
