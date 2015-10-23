@@ -44,8 +44,8 @@ services:
         arguments:
             - @avtonom.media_storage_client.api.factory
 
-    avtonom.media_storage_client.twig.media.name.extension:
-        class: Avtonom\MediaStorageClientBundle\Twig\MediaNameExtension
+    avtonom.media_storage_client.twig.media.get.extension:
+        class: Avtonom\MediaStorageClientBundle\Twig\GetMediaExtension
         public: false
         arguments:
             - @avtonom.media_storage_client.proxy_media.manager

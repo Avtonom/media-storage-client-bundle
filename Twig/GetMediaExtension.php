@@ -5,7 +5,7 @@ namespace Avtonom\MediaStorageClientBundle\Twig;
 use Avtonom\MediaStorageClientBundle\Entity\ProxyMediaInterface;
 use Avtonom\MediaStorageClientBundle\Entity\ProxyMediaManager;
 
-class MediaNameExtension extends \Twig_Extension
+class GetMediaExtension extends \Twig_Extension
 {
     /** @var ProxyMediaManager */
     protected $proxyMediaManager;
@@ -19,31 +19,22 @@ class MediaNameExtension extends \Twig_Extension
     {
         return array
         (
-            new \Twig_SimpleFunction('media_name', [$this, 'getMediaName'])
+            new \Twig_SimpleFunction('media_get', [$this, 'getMedia'])
         );
     }
 
     /**
      * @param string $mediaReferenceFull
+     *
      * @return ProxyMediaInterface
      */
-    private function getMedia($mediaReferenceFull)
-    {
-        return $media = $this->proxyMediaManager->find($mediaReferenceFull);
-    }
-
-    /**
-     * @param string $mediaReferenceFull
-     *
-     * @return ProxyMediaInterface|null
-     */
-    public function getMediaName($mediaReferenceFull)
+    public function getMedia($mediaReferenceFull)
     {
         if(empty($mediaReferenceFull)){
             return '';
         }
         try {
-            $media = $this->getMedia($mediaReferenceFull);
+            $media = $media = $this->proxyMediaManager->find($mediaReferenceFull);
         } catch(\Exception $e){
             return null;
         }
@@ -52,6 +43,6 @@ class MediaNameExtension extends \Twig_Extension
 
     public function getName()
     {
-        return 'AvtonomMediaStorageClientTwigMediaNameExtension';
+        return 'AvtonomMediaStorageClientTwigGetMediaExtension';
     }
 }
