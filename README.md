@@ -7,11 +7,11 @@ Run the following in your project root, assuming you have composer set up for yo
 
 ```sh
 
-composer.phar require avtonom/media-storage-client-bundle ~1.1
+composer.phar require avtonom/media-storage-client-bundle ~1.2
 
 ```
 
-Switching `~1.1` for the most recent tag.
+Switching `~1.2` for the most recent tag.
 
 Add the bundle to app/AppKernel.php
 
@@ -60,11 +60,10 @@ parameters:
 
 ```
 
-[Optionally] File js to file upload:
+[Optionally] File js to file upload (for example: \src\Bundle\Resources\views\standard_layout.html.twig):
+This example uses a library of x-editable (http://vitalets.github.io/x-editable/).
 
 ``` twig
-
-\src\Bundle\Resources\views\standard_layout.html.twig
 
 {% block javascripts %}
     {{ parent() }}
@@ -77,6 +76,9 @@ parameters:
 
 ```
 
+
+### Use alternative number 1: block to add a reference to the file
+
 ``` twig
 
 <a href="{{ mediaReferenceFull }}" class="btn btn-info btn-xs x-editable-update-after-save" target="_blank" data-content-text="%s &nbsp;<i class='fa fa-external-link'></i>" {% if mediaReferenceFull is empty %}style="display: none"{% endif %}>
@@ -85,13 +87,28 @@ parameters:
         {% if media is proxyMedia %}
             {{ media }}
         {% else %}
-            ERROR
+            ERROR: not found
         {% endif %}
     {% endif %}
     &nbsp;<i class="fa fa-external-link"></i>
 </a>
 
 ```
+
+Use the value of the parameters.yaml for the listener:
+
+``` yaml
+
+services:
+    avtonom.media_storage_client.listener:
+        class: Avtonom\MediaStorageClientBundle\EventListener\ObjectAddFileListener
+        ...
+        tags:
+            - { name: doctrine.event_listener, event: prePersist, method: run }
+            - { name: doctrine.event_listener, event: preUpdate, method: run }
+```
+
+### Use alternative number 1: button to upload the file
 
 ``` twig
 
@@ -108,6 +125,8 @@ parameters:
 </div>
 
 ```
+
+Processing in the controller:
 
 ``` php
 
