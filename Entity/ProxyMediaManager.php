@@ -3,6 +3,7 @@
 namespace Avtonom\MediaStorageClientBundle\Entity;
 
 use Avtonom\MediaStorageClientBundle\Exception\MediaStorageClientProxyMediaManagerException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Avtonom\MediaStorageClientBundle\Service\ApiService;
 use Buzz\Message\Response;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -35,6 +36,7 @@ class ProxyMediaManager
      * @param Response $response
      * @return ProxyMediaInterface
      *
+     * @throws NotFoundHttpException
      * @throws MediaStorageClientProxyMediaManagerException
      */
     public function createFromResponse(Response $response)
@@ -47,6 +49,10 @@ class ProxyMediaManager
             } else {
                 throw new MediaStorageClientProxyMediaManagerException('Client not response new value');
             }
+
+        } elseif($response->getStatusCode() == 404) {
+            throw new NotFoundHttpException(sprintf('Unable to find the object'));
+
         } else {
             throw new MediaStorageClientProxyMediaManagerException('Client response code: '.$response->getStatusCode());
         }

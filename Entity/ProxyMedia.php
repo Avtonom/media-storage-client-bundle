@@ -126,7 +126,7 @@ class ProxyMedia implements ProxyMediaInterface
 
     public function __toString()
     {
-        return $this->getReferenceFull();
+        return $this->getName();
     }
 
     /**
