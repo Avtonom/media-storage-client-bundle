@@ -1,4 +1,4 @@
-# Сlient for SonataMediaBundle
+# Сlient for API SonataMediaBundle
 Symfony media client bundle for uploading (sending) files and images to a remote server deployed on SonataMediaBundle
 
 Page bundle: https://github.com/Avtonom/media-storage-client-bundle
