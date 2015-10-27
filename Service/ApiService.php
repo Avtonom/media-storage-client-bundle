@@ -115,7 +115,7 @@ class ApiService
             $request = new FormRequest();
             $request->setMethod(FormRequest::METHOD_GET);
             $request->setHost($this->getApiUrlConfig('base_url'));
-            $url = $this->getApiUrlConfig('get_media_by_reference_full_url').$referenceFull;
+            $url = $this->getApiUrlConfig('get_media_by_reference_full_url').'/'.ltrim($referenceFull, '/');
             $request->setResource($url);
             $this->logger->debug('Send '.$this->getApiUrlConfig('base_url').$url);
             /** @var Response $response */
