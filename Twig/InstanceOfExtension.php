@@ -9,7 +9,7 @@ class InstanceOfExtension extends \Twig_Extension
     public function getTests ()
     {
         return [
-            new \Twig_SimpleTest('proxyMedia', function ($event) { return $event instanceof ProxyMediaInterface; }),
+            new \Twig_SimpleTest('ProxyMediaInterface', function ($event) { return $event instanceof ProxyMediaInterface; }),
         ];
     }
 

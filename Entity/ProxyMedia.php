@@ -126,7 +126,7 @@ class ProxyMedia implements ProxyMediaInterface
 
     public function __toString()
     {
-        return $this->getName();
+        return $this->getReferenceFull(); // Use the link that is namely it is the object identifier. It is used in logging, and adding the value of the entity
     }
 
     /**

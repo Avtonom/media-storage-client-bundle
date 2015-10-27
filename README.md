@@ -84,10 +84,10 @@ This example uses a library of x-editable (http://vitalets.github.io/x-editable/
 <a href="{{ mediaReferenceFull }}" class="btn btn-info btn-xs x-editable-update-after-save" target="_blank" data-content-text="%s &nbsp;<i class='fa fa-external-link'></i>" {% if mediaReferenceFull is empty %}style="display: none"{% endif %}>
     {% if mediaReferenceFull is not empty %}
         {% set media = media_get(mediaReferenceFull) %}
-        {% if media is proxyMedia %}
-            {{ media }}
+        {% if media is ProxyMediaInterface %}
+            {{ media.name }}
         {% else %}
-            ERROR: not found
+            ERROR: file not found
         {% endif %}
     {% endif %}
     &nbsp;<i class="fa fa-external-link"></i>
