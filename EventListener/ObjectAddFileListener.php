@@ -18,7 +18,7 @@ use Symfony\Bridge\Monolog\Logger;
  * @todo recucle http://www.whitewashing.de/2013/07/24/doctrine_and_domainevents.html
  * @todo two file listener and run send
  */
-class ObjectAddFileListener
+class MediaStorageClientChangeFieldListener
 {
     /**
      * @var ApiService

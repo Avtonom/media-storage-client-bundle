@@ -4,7 +4,7 @@ parameters:
 
 services:
     avtonom.media_storage_client.listener:
-        class: Avtonom\MediaStorageClientBundle\EventListener\ObjectAddFileListener
+        class: Avtonom\MediaStorageClientBundle\EventListener\MediaStorageClientChangeFieldListener
         arguments:
             - @avtonom.media_storage_client.api.factory
             - %avtonom.media_storage_client%
