@@ -11,13 +11,11 @@ use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Symfony\Bridge\Monolog\Logger;
 
 /**
+ * Class ChangeFieldListener
  * @package Avtonom\MediaStorageClientBundle\EventListener
  *
- * @todo validate url - backend
- * @todo recucle http://www.whitewashing.de/2013/07/24/doctrine_and_domainevents.html
- * @todo two file listener and run send
- * @todo move config interfaces to use Trait
- * @todo use wrapper to set/get field
+ * @link    https://github.com/Avtonom
+ * @author  Anton U <avtonomspb@gmail.com>
  */
 class ChangeFieldListener
 {
