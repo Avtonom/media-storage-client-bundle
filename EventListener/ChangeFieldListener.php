@@ -11,7 +11,6 @@ use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Symfony\Bridge\Monolog\Logger;
 
 /**
- * Class ObjectAddFileListener
  * @package Avtonom\MediaStorageClientBundle\EventListener
  *
  * @todo validate url - backend
@@ -20,7 +19,7 @@ use Symfony\Bridge\Monolog\Logger;
  * @todo move config interfaces to use Trait
  * @todo use wrapper to set/get field
  */
-class MediaStorageClientChangeFieldListener
+class ChangeFieldListener
 {
     /**
      * @var ApiService
