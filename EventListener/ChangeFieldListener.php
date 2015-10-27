@@ -131,17 +131,22 @@ class ChangeFieldListener
         }
 
         $this->logger->debug('Change value in entity: '.$value);
-        if (!$this->checkDomain($value)) {
-            $proxyMedia = $this->mediaStorageClientManager->send($value, $this->getConfig('client'), $this->getConfig('context'));
-            if(!$this->checkDomain($proxyMedia->getReferenceFull())){
-                $this->logger->debug('Response: '.$proxyMedia);
-                throw new MediaStorageClientListenerException('Client response new value not found in config "ignoredDomains"');
-            }
+        try {
+            if (!$this->checkDomain($value)) {
+                $proxyMedia = $this->mediaStorageClientManager->send($value, $this->getConfig('client'), $this->getConfig('context'));
+                if(!$this->checkDomain($proxyMedia->getReferenceFull())){
+                    $this->logger->debug('Response: '.$proxyMedia);
+                    throw new MediaStorageClientListenerException('Client response new value not found in config "ignoredDomains"');
+                }
 
-            $this->logger->debug('Set new value: '.$proxyMedia);
-            $entity->setValue($proxyMedia);
-        } else {
-            $this->logger->debug(sprintf('Value in ignoredDomains "%s" in entity', implode(', ', $ignoredDomains)));
+                $this->logger->debug('Set new value: '.$proxyMedia);
+                $entity->setValue($proxyMedia);
+            } else {
+                $this->logger->debug(sprintf('Value in ignoredDomains "%s" in entity', implode(', ', $ignoredDomains)));
+            }
+        } catch(MediaStorageClientListenerException $e) {
+            $entity->setValue(null);
+            throw $e;
         }
     }
 
