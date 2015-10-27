@@ -8,6 +8,13 @@ use Avtonom\MediaStorageClientBundle\Exception\MediaStorageClientManagerExceptio
 use Symfony\Bridge\Monolog\Logger;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+/**
+ * Class MediaStorageClientManager
+ * @package Avtonom\MediaStorageClientBundle\Service
+ *
+ * @link    https://github.com/Avtonom
+ * @author  Anton U <avtonomspb@gmail.com>
+ */
 class MediaStorageClientManager
 {
     /**

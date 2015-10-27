@@ -11,6 +11,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Class ProxyMediaManager
  * @package Avtonom\MediaStorageClientBundle\Entity
+ *
+ * @link    https://github.com/Avtonom
+ * @author  Anton U <avtonomspb@gmail.com>
  */
 class ProxyMediaManager
 {

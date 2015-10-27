@@ -10,6 +10,13 @@ use Symfony\Bridge\Monolog\Logger;
 use Buzz\Message\Response;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+/**
+ * Class ApiService
+ * @package Avtonom\MediaStorageClientBundle\Service
+ *
+ * @link    https://github.com/Avtonom
+ * @author  Anton U <avtonomspb@gmail.com>
+ */
 class ApiService
 {
     /**

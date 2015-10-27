@@ -5,6 +5,9 @@ namespace Avtonom\MediaStorageClientBundle\Entity;
 /**
  * Class ProxyMedia
  * @package Avtonom\MediaStorageClientBundle\Entity
+ *
+ * @link    https://github.com/Avtonom
+ * @author  Anton U <avtonomspb@gmail.com>
  */
 class ProxyMedia implements ProxyMediaInterface
 {
