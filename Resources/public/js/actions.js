@@ -1,7 +1,14 @@
 jQuery(document).ready(function ($) {
+    startButtonActions();
+});
 
-    // x-editable update after save
+$(window).bind('load', function(e) {
+    startButtonActions();
+});
+
+function startButtonActions(){
     var x_editable_update_after_save_list = $('.x-editable-update-after-save');
+    // x-editable update after save
     if(x_editable_update_after_save_list.length){
         $.each(x_editable_update_after_save_list, function( index, x_editable_update_after_save ) {
             x_editable_update_after_save = $(x_editable_update_after_save);
@@ -120,4 +127,4 @@ jQuery(document).ready(function ($) {
             }
         });
     }
-});
+}
