@@ -34,7 +34,7 @@ class GetMediaExtension extends \Twig_Extension
             return '';
         }
         try {
-            $media = $media = $this->proxyMediaManager->find($mediaReferenceFull);
+            $media = $this->proxyMediaManager->find($mediaReferenceFull);
         } catch(\Exception $e){
             return null;
         }
