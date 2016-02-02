@@ -63,6 +63,7 @@ class ProxyMediaManager
         $proxyMedia = $this->create();
         $proxyMedia->setReferenceFull($content->get('reference_full'));
         $proxyMedia->setName($content->get('name'));
+        $proxyMedia->setProviderMetadata($content->toArray());
 
         return $proxyMedia;
     }
