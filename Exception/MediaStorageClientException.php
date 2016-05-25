@@ -2,6 +2,8 @@
 
 namespace Avtonom\MediaStorageClientBundle\Exception;
 
-class MediaStorageClientException extends \Exception
+use Symfony\Component\HttpKernel\Exception\HttpException;
+
+class MediaStorageClientException extends HttpException
 {
 }
